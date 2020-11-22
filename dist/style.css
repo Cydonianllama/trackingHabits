@@ -1,0 +1,301 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing : border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+p,h1,h2,a,button,div,input,span{
+    font-family: 'Montserrat', sans-serif;
+}
+/*page home*/
+.home-nav-main{
+    width: 100%;
+    height: 10vh;
+    background-color: #6320ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+.logo{
+    position: relative;
+    width: 15%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home-nav-main .options-home-nav-main a{
+    border: 1px solid white;
+    border-radius : 14px;
+    color : white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-login{
+    margin-right : 15px;
+    padding: 10px 30px;
+}
+.btn-register{
+    padding : 10px 20px;
+}
+
+.options-home-nav-main{
+    width: 25%;
+    height : 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home-hero{
+    height : 15vh;
+    width: 100%;
+    background-color:  #211a1d;
+    color: white;
+}
+.home-description{
+    height: 580px;
+    width: 100%;
+
+}
+footer{
+    width: 100%;
+    height: 10vh;
+}
+
+
+/*login*/
+.container-form{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 700px;
+    height : 500px;
+    transform : Translate(-50%,-50%);
+    display : flex;
+    border : 1px solid rgb(187, 187, 187);
+    border-radius: 24px;
+    overflow: hidden;
+}
+.logo-aplication{
+    user-select: none;
+    padding : 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 20%;
+    height: 500px;
+    border-right : 1px solid  rgb(187, 187, 187);
+}
+.logo-aplication h2 {
+    margin-bottom : 8px;
+}
+.switch-options-forms{
+    position: relative;
+    display :block;
+    width: 80%;
+}
+.switch-options-forms > div input{
+    border : 1px solid darkgray;
+    outline : none;
+    background-color: white;
+    color:black;
+    padding : 10px 30px;
+    margin-bottom: 15px;
+}
+.switch-options-forms > div input::placeholder{
+    color:gray;
+}
+.option-login{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    height : 500px;
+    width: 100%;
+}
+.option-login form{
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.option-register form{
+    height : 500px;
+    width: 100%;
+}
+.option-register{
+    color: white;
+    padding: 12px;
+    position: absolute;
+    top:0;
+    max-width: 600px;
+    left: 100%;
+    width: 580px;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    transition: 1s ease-in-out;
+    background-color: white;
+}
+.option-register > div > button{
+    cursor: pointer;
+}
+.form-option-register{
+    display  : inline-block ;
+    text-align: end;
+    padding-right: 50px;
+    color : white;
+}
+
+
+
+
+/*dashboard*/
+.habitoCard:hover{
+    background-color: rgb(235, 230, 230);
+}
+.habitoCard{
+    display: flex;
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 12px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.habitoCard h2 {
+    border-right: 1px solid rgb(228, 228, 228);
+    width: 25%;
+    font-size: 13px;
+    font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.habitoCard .habitoCard-logs{
+    display: flex;
+    width: 75%;
+    height: 100px;
+}
+.container-habitoCard-monitoring{
+    height : 100px;
+    width: 70%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.habitoCard-monitoring{
+    width : 90%;
+    height : 80px;
+    background-color: darkgray;
+}
+.tags-habitoCard{
+    padding: 8px;
+    width: 30%;
+    height: 100px;
+}
+.tag-habito{
+    display: inline-block;
+    margin-bottom: 5px;
+    position: relative;
+    padding : 4px;
+    border-radius: 8px;
+    background : #6320ee;
+    color : white;
+    font-size : 12px;
+    user-select: none;
+}
+
+.mav-main-dashboard{
+    margin-bottom: 20px;
+}
+.dashboard-nav-main{
+    display: flex;
+    justify-content: space-between;
+    align-items : center;
+    padding-left: 50px;
+    padding-right: 50px;
+    color : white;
+    background-color: #6320ee;
+}
+.dashboard-list-habito{
+    display: flex;
+    width: 100%;
+}
+.dashboard-all-habito{
+    padding: 15px;
+    width: 60%;
+}
+.selected-habito{
+    width: 40%;
+}
+
+
+.completeInfoHabito{
+    width: 90%;
+    height: auto;
+}
+.completeInfoHabito h2{
+    text-align: center;
+    margin-bottom: 25px;
+}
+.completeInfoHabito .completelog{
+    display: flex;
+    flex-direction: column;
+}
+.completelog .log-habito{
+    width: 100%;
+    height: 250px;
+    background-color: #6320ee;
+}
+.completelog .navegador-completeLogHabito{
+    display: flex;
+    justify-content: flex-end;
+}
+.funcionalidad-anotacion{
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.anotation-logs{
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+}
+.anotation-log{
+    border: 1px solid gray;
+    border-radius : 20px;
+    padding:12px;
+    width: 90%;
+    margin-bottom : 15px;
+}
+.anotation-log .header-anotation-log{
+    display : flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.anotation-log .header-anotation-log span{
+    font-size: 8px;
+}
+.anotation-log .description-anotation-log p{
+    font-size: 13px;
+}
+
+.funcionalidades-anotation{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.options-anotation-log{
+    display : flex  ; 
+    justify-content: flex-start;
+}
