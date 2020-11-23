@@ -110,6 +110,14 @@ footer{
 .switch-options-forms > div input::placeholder{
     color:gray;
 }
+#btn-submit-login{
+    position: absolute;
+    width: 150px;
+    padding : 9px;
+    left : 50%;
+    top : 65%;  
+    transform : Translate(-50%,0);
+}
 .option-login{
     padding: 12px;
     display: flex;
@@ -151,9 +159,11 @@ footer{
     display  : inline-block ;
     text-align: end;
     padding-right: 50px;
-    color : white;
+    color : black;
 }
-
+.come-to-login p{
+    color: black;
+}
 
 
 

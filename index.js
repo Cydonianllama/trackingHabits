@@ -29,13 +29,65 @@ rutas
 // variables
 const container = document.getElementById('container')
 
-const home =
-`
+const ListenerShowOptionsProfile = () => {
+
+    let btnProfileHome = document.getElementById('btn-profile-home')
+
+    const show = () => {
+        console.log('still in development');
+    }
+
+    btnProfileHome.addEventListener('click', show)
+
+}
+
+var isLoggedChangeLoginHome = async (isLogged) => {
+
+    let optionsProfileTemplate = 
+    `
+        <div class = "options-profile">
+            <button id = "btn-myProfile">my profile</button>
+            <button id = "btn-myDashboard">my dashboard</button>
+            <button id = "btn-logOut">Log out</button>
+        </div>
+    `
+    
+    let UserTemplate = 
+    `
+        <div class = "userProfile-home">
+            <button id = "btn-profile-home">
+                see opttions
+            </button>
+            ${optionsProfileTemplate}
+        </di>
+    `
+    
+    let loginTemplate = 
+    `
+        <a class = "btn-login" href = "#/Login">login</a>
+    `
+    
+    if (isLogged === 'true'){
+        return UserTemplate
+    }
+    else if (isLogged === 'false'){
+        return loginTemplate
+    }
+    else{
+        return `An error has ocurred`
+    }
+
+}
+
+var renderHome = async () => {
+    
+    var home =
+     `
     <nav class="home-nav-main">
         <div class="logo">
         </div>
         <div class="options-home-nav-main">
-            <a class = "btn-login" href = "#/Login">login</a>
+            ${await isLoggedChangeLoginHome(window.localStorage.getItem('isLogged'))}
         </div>
     </nav>
     <div class = "home-hero">
@@ -43,11 +95,15 @@ const home =
     </div>
     <div class = "home-description">
 
-    </div>
+    </div>  
     <footer>
         this is our footer
     </footer>
-`
+    `
+
+    container.innerHTML = home
+
+}
 
 
 /* login controllers */
@@ -69,6 +125,7 @@ const listenersLogin = () => {
     }
 
     const processDataLogin = () => {
+        localStorage.setItem('isLogged', true)
         window.location.hash = '/Dashboard'
     }
 
@@ -108,7 +165,7 @@ const login =
                 <label for="password2">Confirm password</label>
                 <input type="text" placeholder="confirm password" name="password2" required>
                 <button>Register</button>
-                <div>
+                <div class = "come-to-login">
                     <p>tengo una cuenta <button id = "btn-to-login" >Login</button></p>
                 </div>
             </div>
@@ -134,6 +191,20 @@ const anotationLog =
     </div>
 `
 
+const listenersCompleteInfoHabito = () => {
+
+    const buttonAddAnotation = document.getElementById('btn-add-anotation')
+    const anotationLogs = document.querySelector('.anotation-logs')
+
+    const addAnotation = () => {
+        console.log('addAnotation : still in development')
+        anotationLogs.innerHTML += anotationLog 
+    }
+
+    buttonAddAnotation.addEventListener('click',addAnotation)
+
+}
+
 const completeInfoHabito = 
 `
     <div class = "completeInfoHabito">
@@ -151,13 +222,10 @@ const completeInfoHabito =
             </nav>
         </div>
         <nav class ="funcionalidades-anotation">
-            <button>agregar</button>
+            <button id = "btn-add-anotation">agregar</button>
         </nav>
         <div class = "anotation-logs">
-            ${anotationLog}
-            ${anotationLog}
-            ${anotationLog}
-            ${anotationLog}
+
         </div>
     </div>
 `
@@ -166,6 +234,30 @@ const tagHabito =
 `
     <span class = "tag-habito">tags habito</span>
 `
+
+const listenerHabitoCard = () => {
+
+    const habitoCard_ = document.querySelectorAll('.habitoCard')
+    // conatiner - in dashboard template 
+    const completeInfoHabitoContainer = document.querySelector('.selected-habito') 
+
+    const activateCompleteinfoHabitoListener = () => {
+        if (completeInfoHabitoContainer === null) return
+        else listenersCompleteInfoHabito()
+    }
+
+    //selected-habito - is in dashboard
+    const ContainerSelectedHabito = document.querySelector('.selected-habito') 
+
+    habitoCard_.forEach((item) => {
+        item.addEventListener('click',(e) => {
+            ContainerSelectedHabito.innerHTML = completeInfoHabito 
+            activateCompleteinfoHabitoListener()
+            console.log('activate complete log habito : still in development')
+        })
+    })
+
+}
 
 const habitoCard = 
 `
@@ -186,11 +278,32 @@ const habitoCard =
 `
 
 const listenersDashboard = () =>{
+
+    const dashboardAllHabito = document.querySelector('.dashboard-all-habito')
     const btnLogutDashboard = document.getElementById('btn-log-out-dashboard')
+    const btnCreateHabito = document.getElementById('btn-create-habito')
+
+    const activateHabitoCardsListener = () => {
+        if (dashboardAllHabito.innerHTML === null) return 
+        else listenerHabitoCard()
+    }
+
+    const createHabito = () => {
+        dashboardAllHabito.innerHTML += habitoCard
+        activateHabitoCardsListener()//if any card there ,this does not activate  
+    }
+
     const processLogOut = () =>{
+        window.localStorage.setItem('isLogged',false)
         window.location.hash = '#/Home'
     }
+
+    activateHabitoCardsListener()//if any card there ,this does not activate  
+    
     btnLogutDashboard.addEventListener('click',processLogOut)
+    btnCreateHabito.addEventListener('click',createHabito)
+    
+
 }
 
 const dashboard = 
@@ -204,25 +317,22 @@ const dashboard =
         </div>
     </nav>
     <div class = "dashboard-list-habito">
+        <nav class="mav-main-dashboard">
+            <button id = "btn-create-habito">Create Habito</button>
+        </nav>
         <div class ="dashboard-all-habito">
-            <nav class="mav-main-dashboard">
-                <button>Create Habito</button>
-            </nav>
-            ${habitoCard}
-            ${habitoCard}
-            ${habitoCard}
-            ${habitoCard}
             ${habitoCard}
             ${habitoCard}
         </div>
         <div class = "selected-habito">
-            ${completeInfoHabito}
+            
         </div>
     </div>
     <footer>
         this is our footer
     </footer>
 `
+// ${completeInfoHabito} -> esto va  en selected-habito
 
 const page404 = 
 `
@@ -240,13 +350,15 @@ const page404 =
 //la aplicacion redirecciona a la ruta especificada
 
 const router = async(hash) => {
-    //history.replaceState(stateObj, '', 'bar2.html');
-    console.log('aqui antes del switch'  +  hash);
+
+    console.log('funcion router accionada  : '  +  hash)
+    console.log('isLogged log : ' + window.localStorage.getItem('isLogged'))
+
     let hash_ = await hash;
     switch(hash_){
         case '#/Home':
-            console.log('aqui')
-            container.innerHTML = home
+            await renderHome()
+            if (window.localStorage.getItem('isLogged') === 'true') ListenerShowOptionsProfile()    
             break;
         case '#/Login':
             container.innerHTML = login
@@ -265,9 +377,11 @@ const router = async(hash) => {
 
 const app = () =>{
 
+    //localStorage para pruebas 
+    localStorage.setItem('isLogged', 'false')
+
     const locationHash = () =>{
         window.location.hash = '/Home'
-        console.log(window.location.hash)
         router(window.location.hash)
     }
 
