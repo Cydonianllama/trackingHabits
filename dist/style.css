@@ -227,6 +227,11 @@ footer{
 .mav-main-dashboard{
     margin-bottom: 20px;
 }
+.dlh1{
+    display: flex;
+    flex-direction: column;
+    width : 60%;
+}
 .dashboard-nav-main{
     display: flex;
     justify-content: space-between;
@@ -242,7 +247,7 @@ footer{
 }
 .dashboard-all-habito{
     padding: 15px;
-    width: 60%;
+    width: 90%;
 }
 .selected-habito{
     width: 40%;

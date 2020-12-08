@@ -174,8 +174,28 @@ const login =
 
 `
 
-const anotationLog = 
-`
+const listenersAnotationLog = () => {
+    
+    const btnEditAnotationLog = document.getElementById('btn-edit-anotation-log')
+    const btnDeleteAnotationLog = document.getElementById('btn-delete-anotation-log')
+
+    const EditAnotation = () => {
+        console.log('still in development')
+    }
+
+    const DeleteAnotation = () => {
+        console.log('still in development')
+    } 
+
+    btnEditAnotationLog.addEventListener('click',EditAnotation)
+    btnDeleteAnotationLog.addEventListener('click',DeleteAnotation)
+
+}
+
+const renderAnotationLog = async () => {
+    
+    const anotationLog =
+    `
     <div class = "anotation-log">
         <div class = "header-anotation-log">
             <span>fehca de anotacion</span>
@@ -185,28 +205,39 @@ const anotationLog =
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, fugit. Optio, reprehenderit quo? Commodi accusamus ea est dolores incidunt architecto nemo, dolorum fuga. Doloremque quisquam vero unde et, quidem fugit!</p>
         </div>
         <div class = "options-anotation-log">
-            <button>edit</button>
-            <button>delete</button>
+            <button id = "btn-edit-anotation-log" >edit</button>
+            <button id = "btn-delete-anotation-log">delete</button>
         </div>
     </div>
-`
+    `
+
+    return anotationLog
+
+}
 
 const listenersCompleteInfoHabito = () => {
 
     const buttonAddAnotation = document.getElementById('btn-add-anotation')
     const anotationLogs = document.querySelector('.anotation-logs')
 
-    const addAnotation = () => {
+    const addAnotation = async () => {
         console.log('addAnotation : still in development')
-        anotationLogs.innerHTML += anotationLog 
+        let templateAnotationLog = await renderAnotationLog()
+        anotationLogs.innerHTML += templateAnotationLog 
     }
 
     buttonAddAnotation.addEventListener('click',addAnotation)
 
 }
 
-const completeInfoHabito = 
-`
+const renderCompleteHabito = () => {
+    
+    const processNumeration = () => {
+        console.log('still in development');
+    }
+
+    const completeInfoHabito =
+    `
     <div class = "completeInfoHabito">
         <h2>Titulo de habito</h2>
         <div class="completelog">
@@ -228,12 +259,22 @@ const completeInfoHabito =
 
         </div>
     </div>
-`
+    `
 
-const tagHabito = 
-`
+    return completeInfoHabito
+
+}
+
+const renderTagHabito = async () => {
+    
+    const tagHabito =
+    `
     <span class = "tag-habito">tags habito</span>
-`
+    `
+    
+    return tagHabito
+
+}
 
 const listenerHabitoCard = () => {
 
@@ -250,8 +291,9 @@ const listenerHabitoCard = () => {
     const ContainerSelectedHabito = document.querySelector('.selected-habito') 
 
     habitoCard_.forEach((item) => {
-        item.addEventListener('click',(e) => {
-            ContainerSelectedHabito.innerHTML = completeInfoHabito 
+        item.addEventListener('click', async (e) => {
+            let templateCompleteInfoHabito = await renderCompleteHabito()
+            ContainerSelectedHabito.innerHTML = templateCompleteInfoHabito 
             activateCompleteinfoHabitoListener()
             console.log('activate complete log habito : still in development')
         })
@@ -259,8 +301,14 @@ const listenerHabitoCard = () => {
 
 }
 
-const habitoCard = 
-`
+const renderHabitoCard = async () => {
+    
+    const obtainTagHabito = () => {
+        console.log('still in development')
+    }
+
+    const habitoCard =
+    `
     <div class = "habitoCard">
         <h2>nombre del habito</h2>
         <div class ="habitoCard-logs">
@@ -270,12 +318,16 @@ const habitoCard =
                 </div>
             </div>
             <div class="tags-habitoCard">
-                ${tagHabito} 
-                ${tagHabito}  
+                ${await renderTagHabito()} 
+                ${await renderTagHabito()}  
             </div>
         </div>
     </div>
-`
+    `
+
+    return habitoCard
+
+}
 
 const listenersDashboard = () =>{
 
@@ -288,8 +340,9 @@ const listenersDashboard = () =>{
         else listenerHabitoCard()
     }
 
-    const createHabito = () => {
-        dashboardAllHabito.innerHTML += habitoCard
+    const createHabito = async () => {
+        let templateHabitoCard = await renderHabitoCard()
+        dashboardAllHabito.innerHTML += templateHabitoCard
         activateHabitoCardsListener()//if any card there ,this does not activate  
     }
 
@@ -317,12 +370,13 @@ const dashboard =
         </div>
     </nav>
     <div class = "dashboard-list-habito">
-        <nav class="mav-main-dashboard">
-            <button id = "btn-create-habito">Create Habito</button>
-        </nav>
-        <div class ="dashboard-all-habito">
-            ${habitoCard}
-            ${habitoCard}
+        <div class = "dlh1">
+            <nav class="mav-main-dashboard">
+                <button id="btn-create-habito">Create Habito</button>
+            </nav>
+            <div class="dashboard-all-habito">
+            
+            </div>
         </div>
         <div class = "selected-habito">
             
@@ -379,7 +433,7 @@ const app = () =>{
 
     //localStorage para pruebas 
     localStorage.setItem('isLogged', 'false')
-
+    window.location.hash = '/Home'
     const locationHash = () =>{
         window.location.hash = '/Home'
         router(window.location.hash)
