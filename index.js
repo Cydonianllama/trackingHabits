@@ -26,6 +26,11 @@ rutas
 	/dashboard
 */
 
+//data de prueba 
+
+var habitoArray = []
+
+
 // variables
 const container = document.getElementById('container')
 
@@ -220,7 +225,8 @@ const listenersCompleteInfoHabito = () => {
     const buttonAddAnotation = document.getElementById('btn-add-anotation')
     const anotationLogs = document.querySelector('.anotation-logs')
 
-    const addAnotation = async () => {
+    const addAnotation = async (event) => {
+        event.preventDefault()
         console.log('addAnotation : still in development')
         let templateAnotationLog = await renderAnotationLog()
         anotationLogs.innerHTML += templateAnotationLog 
@@ -253,7 +259,10 @@ const renderCompleteHabito = () => {
             </nav>
         </div>
         <nav class ="funcionalidades-anotation">
-            <button id = "btn-add-anotation">agregar</button>
+            <form action="" id = "form-create-anotation">
+                <textarea name="comentario" id="" cols="30" rows="5"></textarea>
+                <button id = "btn-add-anotation">agregar</button>
+            </form>
         </nav>
         <div class = "anotation-logs">
 
@@ -265,11 +274,11 @@ const renderCompleteHabito = () => {
 
 }
 
-const renderTagHabito = async () => {
+const renderTagHabito = async (name) => {
     
     const tagHabito =
     `
-    <span class = "tag-habito">tags habito</span>
+    <span class = "tag-habito">${name}</span>
     `
     
     return tagHabito
@@ -301,7 +310,7 @@ const listenerHabitoCard = () => {
 
 }
 
-const renderHabitoCard = async () => {
+const renderHabitoCard = async ({name,type}) => {
     
     const obtainTagHabito = () => {
         console.log('still in development')
@@ -310,7 +319,7 @@ const renderHabitoCard = async () => {
     const habitoCard =
     `
     <div class = "habitoCard">
-        <h2>nombre del habito</h2>
+        <h2>${name}</h2>
         <div class ="habitoCard-logs">
             <div class = "container-habitoCard-monitoring">
                 <div class="habitoCard-monitoring">
@@ -318,8 +327,7 @@ const renderHabitoCard = async () => {
                 </div>
             </div>
             <div class="tags-habitoCard">
-                ${await renderTagHabito()} 
-                ${await renderTagHabito()}  
+                ${await renderTagHabito(type)} 
             </div>
         </div>
     </div>
@@ -335,13 +343,28 @@ const listenersDashboard = () =>{
     const btnLogutDashboard = document.getElementById('btn-log-out-dashboard')
     const btnCreateHabito = document.getElementById('btn-create-habito')
 
+    //actions for the form of create an habit
+    const inputNameHabito  = document.getElementById('input-name-habito') 
+    const selectTagsHabito = document.getElementById('select-tags-habito')
+    const dataHabito = ({name , type}) => {
+        return {id : new Date().getTime().toString() , name : name , type : type }
+    }
+
     const activateHabitoCardsListener = () => {
         if (dashboardAllHabito.innerHTML === null) return 
         else listenerHabitoCard()
     }
 
-    const createHabito = async () => {
-        let templateHabitoCard = await renderHabitoCard()
+    const createHabito = async (event) => {
+
+        //data of the form of habit 
+        let indexTagHabito = selectTagsHabito.selectedIndex
+        let tagHabitoName = selectTagsHabito.options[indexTagHabito].text
+        let nameHabito = inputNameHabito.value
+        let Habito = dataHabito({name : nameHabito , type : tagHabitoName})
+
+        event.preventDefault()
+        let templateHabitoCard = await renderHabitoCard(Habito)
         dashboardAllHabito.innerHTML += templateHabitoCard
         activateHabitoCardsListener()//if any card there ,this does not activate  
     }
@@ -372,7 +395,16 @@ const dashboard =
     <div class = "dashboard-list-habito">
         <div class = "dlh1">
             <nav class="mav-main-dashboard">
-                <button id="btn-create-habito">Create Habito</button>
+                <form action="">
+                    <input type="text" placeholder = "nombre del habito" id = "input-name-habito">
+                    <select name="tags" id="select-tags-habito">
+                        <option value="seleccionar">Seleccionar</option>
+                        <option value="personal">Personal</option>
+                        <option value="trabajo">Trabajo</option>
+                        <option value="pasion">Pasion</option>
+                    </select>
+                    <button type="submit" id="btn-create-habito">Create Habito</button>
+                </form>
             </nav>
             <div class="dashboard-all-habito">
             
