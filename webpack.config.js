@@ -13,8 +13,8 @@ module.exports = {
                 test : /\.js$/,
                 use  : ['babel-loader']
             },
-        ]
-    },
+        ],
+      },
     devServer : {
         contentBase : path.resolve(__dirname,'dist'),
         historyApiFallback : true,
