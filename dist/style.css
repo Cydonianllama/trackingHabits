@@ -3,6 +3,26 @@
     padding:0;
     box-sizing : border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
+.container-table::-webkit-scrollbar-track,body::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.container-table::-webkit-scrollbar ,body::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.container-table::-webkit-scrollbar-thumb ,body::-webkit-scrollbar-thumb
+{
+  background-color: rgb(185, 185, 185);
+  border: none;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 p,h1,h2,a,button,div,input,span{
@@ -12,14 +32,19 @@ p,h1,h2,a,button,div,input,span{
 .home-nav-main{
     width: 100%;
     height: 10vh;
-    background-color: #6320ee;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-right: 60px;
+    padding-left: 40px;
 }
-.logo{
+.home-nav-main .logo{
+    color : black;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 600;
     position: relative;
     width: 15%;
     height: 10vh;
@@ -27,16 +52,45 @@ p,h1,h2,a,button,div,input,span{
     justify-content: center;
     align-items: center;
 }
+.home-nav-main .options-home-nav-main{
+    display: flex;
+    justify-content: flex-end;
+}
+.home-nav-main .ul-nav-main{
+    display: flex;
+    justify-content: flex-end;
+}
+.home-nav-main .ul-nav-main li{
+    display: inline-block;
+    list-style: none;
+}
+.home-nav-main .ul-nav-main li a{
+    text-decoration: none;
+    padding:12px;
+    background-color: #f1f1f1;
+    color: rgb(78, 78, 78);
+    font-size: .8rem;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.home-nav-main .ul-nav-main li a:hover{
+    background-color: white;
+}
 .home-nav-main .options-home-nav-main a{
-    border: 1px solid white;
+    background-color: #6320ee;
     border-radius : 14px;
     color : white;
     cursor: pointer;
     text-decoration: none;
 }
 .btn-login{
+    position: relative;
     margin-right : 15px;
-    padding: 10px 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom:10px;
 }
 .btn-register{
     padding : 10px 20px;
@@ -50,28 +104,184 @@ p,h1,h2,a,button,div,input,span{
     align-items: center;
 }
 .home-hero{
-    height : 15vh;
+    height : 90vh;
     width: 100%;
-    background-color:  #211a1d;
-    color: white;
+    color: black;
+}
+.hero-content{
+    position: absolute;
+    padding: 12px;
+    width: 40%;
+    top:50%;
+    left : 25%;
+    transform: translate(-50%,-50%);
+    display : flex;
+    flex-direction: column;
+}
+.hero-content h2{
+    width: 100%;
+    text-align: start;
+    font-size: 3rem;
+    font-weight: 600;
+}
+.hero-content p{
+    margin-top: 2px;
+    margin-bottom: 15px;
+    font-size: .8rem;
+    font-weight: 400;
+    color: rgb(78, 78, 78);
+}
+.hero-content button{
+    cursor: pointer;
+    width: 45%;
+    border: none;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 4%, rgba(110,42,226,1) 48%, rgba(144,128,179,1) 100%);
+    color : white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.features{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-features{
+    width: 80%;
+    height :60vh;
+}
+.container-features div{
+    border-radius: 12px;
+    padding : 8px;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    width: 30%;
+    height: 250px;
+    background-color: #6320ee;
+    float :left;
+}
+.container-features div:hover{
+    background-color: #7c44ee;
+}
+.container-features div h2{
+    color : white;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+.container-features div p{
+    color : white;
+    font-size: .8rem;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display : flex;
+    align-items: center;
+}
+.container-features div p img{
+    margin-right: 8px;
+}
+.fake-pricing{
+    width: 100%;
+    height: 100vh;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-pricing{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.container-pricing h2::before{
+    top : 0;
+    left :0;
+    content : '';
+    position: absolute;
+    width: 100%;
+    height : 8px;
+    background-color: #6320ee;
+}
+.container-pricing div{
+    position : relative;
+    height: 65vh;
+    border-radius: 8px;
+    padding: 10px;
+    width: 30%;
+    border: 1px solid rgb(230, 230, 230);
+}
+.container-pricing div h2{
+    margin-top : 15px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight : 600;
+    color : rgb(122, 122, 122);
+}
+.container-pricing div ul{
+    padding : 45px 0;
+}
+.container-pricing div ul li{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    list-style: none;
+    margin-bottom: 24px;
+    color : rgb(102, 99, 99);
+}
+.container-pricing div ul li img{
+    margin-right: 2px;
+}
+
+.container-pricing div button{
+    position: absolute;
+    bottom : 25px;
+    left:50%;
+    outline : none;
+    transform: translate(-50%,0);
+    /* display: block;
+    margin : 0 auto; */
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 80%;
+    padding: 8px 0;
+    color : white;
+    background-color: #6320ee;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.my-precious{
+    position: relative;
+    top : -50px;
 }
 .home-description{
     height: 580px;
     width: 100%;
-
+}
+.git-hub-integration{
+    width: 100%;
+    height: 100vh;
 }
 footer{
     width: 100%;
     height: 10vh;
 }
-
+.footer-main{
+    width: 100%;
+    height: 50vh;
+    background-color: #292426;
+}
 
 /*login*/
 .container-form{
     position: absolute;
     left:50%;
     top:50%;
-    width: 700px;
+    width: 60%;
     height : 500px;
     transform : Translate(-50%,-50%);
     display : flex;
@@ -104,7 +314,10 @@ footer{
     outline : none;
     background-color: white;
     color:black;
-    padding : 10px 30px;
+    width: 45%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
     margin-bottom: 15px;
 }
 .switch-options-forms > div input::placeholder{
@@ -117,6 +330,12 @@ footer{
     left : 50%;
     top : 65%;  
     transform : Translate(-50%,0);
+    border : none;
+    border-radius: 8px;
+    background-color: #6320ee;
+    color: white;
+    font-size: 1rem;
+    font-weight:600;
 }
 .option-login{
     padding: 12px;
@@ -132,10 +351,7 @@ footer{
     flex-direction: column;
     justify-content: center;
 }
-.option-register form{
-    height : 500px;
-    width: 100%;
-}
+
 .option-register{
     color: white;
     padding: 12px;
@@ -143,12 +359,13 @@ footer{
     top:0;
     max-width: 600px;
     left: 100%;
-    width: 580px;
+    
     display : flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    width: 1950px;
+    height: 500px; 
     transition: 1s ease-in-out;
     background-color: white;
 }
@@ -174,12 +391,17 @@ footer{
     margin-bottom: 20px;
 }
 .mav-main-dashboard form {
+    display: flex;
+    align-items: center;
     padding-top: 15px;
     padding-bottom : 15px;
     padding: 35px;
+    width: 100%;
 }
 .mav-main-dashboard form label{
     color : black;
+    display: flex;
+    align-items: center;
 }
 .mav-main-dashboard form input{
     border: none;
@@ -200,8 +422,7 @@ footer{
     padding-bottom: 5px;
 }
 .mav-main-dashboard form button{
-    width: 18%;
-    height : 5vh;
+    padding : 5px 12px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -216,18 +437,109 @@ footer{
     flex-direction: column;
     width : 60%;
 }
+#btn-create-habito{
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+}
+.mav-main-dashboard form label{
+    font-size: .6rem;
+    font-weight: 600;
+}
 .dashboard-nav-main{
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items : center;
     padding-left: 50px;
     padding-right: 50px;
     color : white;
-    background-color: #6320ee;
+    height: 10vh;
 }
+.dashboard-nav-main .logo{
+    font-size:2rem;
+    font-weight : 600;
+    color : black;
+}
+.dashboard-nav-main .wraper-profile{
+    border-radius : 4px;
+    z-index: 11;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    padding: 3px;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);;
+}
+.dashboard-nav-main .wraper-profile .profile{
+    position: relative;
+    display : flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 4px;
+}
+.dashboard-nav-main .wraper-profile .profile p , .dashboard-nav-main .wraper-profile .profile span{
+    font-size: .8rem;
+    font-weight: 800;
+    color : white;
+} 
+.dashboard-nav-main .wraper-profile .actions-profile .slider-mav-profile{
+    height: 0;
+    overflow: hidden;
+}
+.dashboard-nav-main .wraper-profile .profile .actions-profile label{
+    cursor: pointer;
+}
+.dashboard-nav-main .wraper-profile .profile .actions-profile input:checked ~ ul{
+    height: auto;
+}
+.dashboard-nav-main .wraper-profile .profile input{
+    display: none;
+}
+.slider-mav-profile{
+    z-index: 2;
+    position: absolute;
+    top: 100%;
+    left:0;
+    width: 100%;
+
+}
+.dashboard-nav-main .wraper-profile .actions-profile .slider-mav-profile li{
+    display: block;
+}
+.dashboard-nav-main .wraper-profile .actions-profile .slider-mav-profile li button{
+    display: block;
+    width: 100%;
+    height: 25px;
+    border: none;
+    background-color: #211a1d;
+    color: white;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor : pointer
+}
+.dashboard-nav-main .wraper-profile .actions-profile .slider-mav-profile li button:hover{
+    background-color: #292426;
+}
+
+.dashboard-nav-main .wraper-profile .profile .avatar{
+    width: 45px;
+    height :45px;
+    border-radius: 50%;
+    background: #6320ee;
+}
+.dashboard-nav-main .wraper-profile .profile{
+    width: 100%;
+    height: auto;
+}
+
+
 .dashboard-list-habito{
     display: flex;
     width: 100%;
+    height: 88vh;
+    padding: 12px;
 }
 .dashboard-all-habito{
     width: 90%;
@@ -236,15 +548,30 @@ footer{
     padding-top: 15px;
     padding-bottom: 15px;
 }
+.container-table{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.table-habito{
+    position: relative;
+    width: 100%;
+}
 .table-habito thead {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 .table-habito thead th {
-    background-color: #3e05b1;
-    color : white;
+    position: sticky;
+    top:0;
+    background-color: rgb(243, 243, 243);
+    color : black;
     text-align: start;
     line-height: 35px;
+}
+.table-habito thead tr .th1{
+    width: 50%;
 }
 .table-habito  tr td {
     padding-top: 5px;
@@ -255,6 +582,17 @@ footer{
 }
 .habitoCard:hover{
     background-color: rgb(245, 245, 245);
+}
+.habitoCard .actions-habito-card {
+    display : flex;
+}
+.habitoCard .actions-habito-card button{
+    border : none;
+    background: none;
+    display : flex;
+    align-items: center;
+    margin-right: 2%;
+    outline: none;
 }
 
 .selected-habito{
@@ -271,14 +609,15 @@ footer{
     display: none;
 }
 .routes-dashboard input:checked + label{
-    background-color: #3e05b1;
+    background-color: #6320ee;
+    color: white;
 }
 .routes-dashboard label{
     cursor: pointer;
-    padding : 8px;
-    background-color: #6320ee;
-    color : white;
-    font-size : .8rem;
+    padding:12px;
+    background-color: #ececec;
+    color: #000000;
+    font-size: .8rem;
     font-weight: 600;
     border-radius: 4px;
     margin-right: 1%;
@@ -288,12 +627,13 @@ footer{
     font-weight: 400;
     padding: 4px;
     border-radius: 4px;
-    background-color: #3e05b1;
+    background-color: #4b4b4b;
     color : white;  
 }
 .completeInfoHabito{
+    padding: 0px 12px;
     width: 90%;
-    height: auto;
+    height: 90vh;
 }
 .completeInfoHabito h2{
     text-align: center;
@@ -395,4 +735,22 @@ footer{
 .options-anotation-log{
     display : flex  ; 
     justify-content: flex-start;
+}
+
+.footer-dashboard{
+    width: 100%;
+    height: 25vh;
+    background-color: #211a1d;
+    color : white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.programming-amico{
+    position: absolute;
+    width: 40%;
+    left:70%;
+    top:55%;
+    transform: translate(-50%,-50%);
 }

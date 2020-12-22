@@ -76,7 +76,6 @@ async function C_deleteAccount(){
 var habitoArray = []
 
 // variables
-console.log('el inicio de mi aplicacaion')
 
 const ListenerShowOptionsProfile = () => {
     let btnProfileHome = document.getElementById('btn-profile-home')
@@ -108,16 +107,9 @@ var isLoggedChangeLoginHome = async (isLogged) => {
     `
         <a class = "btn-login" href = "#/Login">login</a>
     `
-    
-    if (isLogged === 'true'){
-        return UserTemplate
-    }
-    else if (isLogged === 'false'){
-        return loginTemplate
-    }
-    else{
-        return `An error has ocurred`
-    }
+    if (isLogged === 'true') return UserTemplate
+    else if (isLogged === 'false') return loginTemplate
+    else return `An error has ocurred`
 }
 
 var renderHome = async () => {
@@ -125,19 +117,87 @@ var renderHome = async () => {
      `
     <nav class="home-nav-main">
         <div class="logo">
+            LOGO
         </div>
+        <ul class = "ul-nav-main">
+            <li><a class = "a-tag-nav" href="#Home">Home</a></li>
+            <li><a class = "a-tag-nav" href="#features">Features</a> </li>
+            <li><a class = "a-tag-nav" href="#fake-pricing">Pricing</a></li>
+            <li><a class = "a-tag-nav" href="#git-hub-integration">GitHub Repo</a></li>
+        </ul>
         <div class="options-home-nav-main">
             ${await isLoggedChangeLoginHome(window.localStorage.getItem('isLogged'))}
         </div>
     </nav>
     <div class = "home-hero">
-        here is our hero
+        <div class ="hero-content">
+            <h2>This is my <span>APP</span> Tracking</h2>
+            <p>my firts app, developed in all aspects by me , im so happy with this project, i hope that you enjoy it like me enjoyed when i was developed this app</p>
+            <button class ="btn-hero-contact">Contact</button>
+        </div>
+        <img class="programming-amico"src='./resources/vectors/Programming_amico.svg' alt="esta en una imagen">
     </div>
-    <div class = "home-description">
+    <div class ="features" id ="features">
+        <div class ="container-features">
+            <div class ="feature-1">
+                <h2>Manage Habits</h2>
+                <p> <img src="./resources/vectors/star.svg" alt="asd"> you can create all your habit for managemment</p>
+            </div>
+            <div class ="feature-2">
+                <h2>Audit Your Habits</h2>
+                <p><img src="./resources/vectors/star.svg" alt="asd">you can see your progress and improve your skills</p>
+            </div>
+            <div class ="feature-3">
+                <h2>Establish your Habits</h2>
+                <p><img src="./resources/vectors/star.svg" alt="asd">you can program your habits in a moth ,day and year</p>
+            </div>
+            <div class ="feature-4">
+                <h2>Export your data anytime you want</h2>
+                <p><img src="./resources/vectors/star.svg" alt="asd">your have complete access to the data that you were creating</p>
+            </div>
+            <div class="feature-5">
+                <h2>Integrations with your tools</h2>
+                <p><img src="./resources/vectors/star.svg" alt="asd">in progress but i promise this feature</p>
+            </div>
+        </div>
+    </div>
+    <div class ="fake-pricing" id ="fake-pricing">
+        <div class="container-pricing">
+            <div class ="pricing-basic">
+                <h2>Basic</h2>
+                <ul class="list-features">
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">limited numbers of habits : 5</li> 
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">limeted calendar actions</li>  
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">limited anotation actions</li>
+                </ul>
+                <button>Basic</button>
+            </div>
+            <div class="pricing-standar my-precious">
+                <h2>Standar</h2>
+                <ul class="list-features">
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">unlimited numbers of Habits</li>
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">unlimited calendar Actions</li>
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">unlimited anotation Actions</li>
+                </ul>
+                <button>Standar</button>
+            </div>
+            <div class="pricing-proffesional">
+                <h2>Professional</h2>
+                <ul class="list-features">
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">all in standar features</li>
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">unique session</li>
+                    <li><img src="./resources/vectors/check-circle.svg" alt="asd">support team</li>
+                </ul>
+                <button>Professional</button>
+            </div>
+        </div>
+    </div>
+    <div class = "git-hub-integration" id ="git-hub-integration">
 
     </div>  
-    <footer>
+    <footer class="footer-main">
         this is our footer
+        <a href="https://storyset.com/web">Illustration by Freepik Storyset</a>
     </footer>
     `
     container.innerHTML = home
@@ -344,8 +404,9 @@ const renderHabitoCard = async ({name,type}) => {
             <td> ${await renderTagHabito(type)} </td>
             <td>
                 <div class="actions-habito-card">
-                    <button id="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"> delete</button>
-                    <button id="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"> edit</button>
+                    <button id="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"></button>
+                    <button><img src='./resources/vectors/archive.svg' alt="o"></button>
+                    <button id="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"></button>
                 </div>
             </td>
         </tr>	
@@ -353,6 +414,26 @@ const renderHabitoCard = async ({name,type}) => {
     `
     return habitoCard
 }
+
+const switchDashboardScreens = (id,container) =>{
+    switch (id) {
+        case 'rb1':
+            container.innerHTML = mainHabits
+            listenersDashboard()
+            break;
+        case 'rb2':
+            container.innerHTML = horariosTemplate
+            listenersHorario()
+            break;
+        case 'rb3':
+            container.innerHTML = archivadosTemplate
+            break;
+        case 'rb4':
+            container.innerHTML = preferenciasTemplate
+            break;
+    }
+}
+
 
 const listenersDashboard = () =>{
 
@@ -410,44 +491,208 @@ const listenersDashboard = () =>{
     btnLogutDashboard.addEventListener('click', processSignOut)
     btnCreateHabito.addEventListener('click',processDataHabito)
     routesToGo.childNodes.forEach(item => {
-        item.addEventListener('click',(e)=>{
+        item.addEventListener('click',async (e)=>{
+            let container = document.querySelector('.dashboard-list-habito')
             if(e.target.checked === true) {
-                switch (e.target.id){
-                    case 'rb1':
-                        console.log('rb1 compilations')
-                        break;
-                    case 'rb2':
-                        console.log('rb2 compilations')
-                        break;
-                    case 'rb3':
-                        console.log('rb3 compilations')
-                        break;
-                    case 'rb4':
-                        console.log('rb4 compilations')
-                        break;
-                }
+                switchDashboardScreens(e.target.id,container)
             }
         })
     })
 }
 
-const dashboard = 
+// ${completeInfoHabito} -> esto va  en selected-habito
+
+const listenersHorario = () =>{
+    function generate_year_range(start, end) {
+        var years = "";
+        for (var year = start; year <= end; year++) {
+            years += "<option value='" + year + "'>" + year + "</option>";
+        }
+        return years;
+    }
+
+    today = new Date();
+    currentMonth = today.getMonth();
+    currentYear = today.getFullYear();
+    selectYear = document.getElementById("year");
+    selectMonth = document.getElementById("month");
+
+
+    createYear = generate_year_range(1970, 2050);
+    /** or
+     * createYear = generate_year_range( 1970, currentYear );
+     */
+
+    document.getElementById("year").innerHTML = createYear;
+
+    var calendar = document.getElementById("calendar");
+    var lang = calendar.getAttribute('data-lang');
+
+    var months = "";
+    var days = "";
+
+    var monthDefault = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    var dayDefault = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    if (lang == "en") {
+        months = monthDefault;
+        days = dayDefault;
+    }else {
+        months = monthDefault;
+        days = dayDefault;
+    }
+
+    var $dataHead = "<tr>";
+    for (dhead in days) {
+        $dataHead += "<th data-days='" + days[dhead] + "'>" + days[dhead] + "</th>";
+    }
+    $dataHead += "</tr>";
+
+    //alert($dataHead);
+    document.getElementById("thead-month").innerHTML = $dataHead;
+
+
+    monthAndYear = document.getElementById("monthAndYear");
+    showCalendar(currentMonth, currentYear);
+
+
+
+    function next() {
+        currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+        currentMonth = (currentMonth + 1) % 12;
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function previous() {
+        currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+        currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function jump() {
+        currentYear = parseInt(selectYear.value);
+        currentMonth = parseInt(selectMonth.value);
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function showCalendar(month, year) {
+
+        var firstDay = (new Date(year, month)).getDay();
+
+        tbl = document.getElementById("calendar-body");
+
+
+        tbl.innerHTML = "";
+
+
+        monthAndYear.innerHTML = months[month] + " " + year;
+        selectYear.value = year;
+        selectMonth.value = month;
+
+        // creating all cells
+        var date = 1;
+        for (var i = 0; i < 6; i++) {
+
+            var row = document.createElement("tr");
+
+
+            for (var j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDay) {
+                    cell = document.createElement("td");
+                    cellText = document.createTextNode("");
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                } else if (date > daysInMonth(month, year)) {
+                    break;
+                } else {
+                    cell = document.createElement("td");
+                    cell.setAttribute("data-date", date);
+                    cell.setAttribute("data-month", month + 1);
+                    cell.setAttribute("data-year", year);
+                    cell.setAttribute("data-month_name", months[month]);
+                    cell.className = "date-picker";
+                    cell.innerHTML = "<span>" + date + "</span>";
+
+                    if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                        cell.className = "date-picker selected";
+                    }
+                    row.appendChild(cell);
+                    date++;
+                }
+
+
+            }
+
+            tbl.appendChild(row);
+        }
+
+    }
+
+    function daysInMonth(iMonth, iYear) {
+        return 32 - new Date(iYear, iMonth, 32).getDate();
+    }
+}
+
+
+let horariosTemplate = 
 `
-    <nav class = "dashboard-nav-main">
-        <div class="logo">
-            logo
+ <div class="wrapper">
+
+    <div class="container-calendar">
+        <h3 id="monthAndYear"></h3>
+        
+        <div class="button-container-calendar">
+            <button id="previous" onclick="previous()">&#8249;</button>
+            <button id="next" onclick="next()">&#8250;</button>
         </div>
-        <div class="dashboard-options-nav-main">
-            <button id = "btn-log-out-dashboard">log out</button>
+        
+        <table class="table-calendar" id="calendar" data-lang="en">
+            <thead id="thead-month"></thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
+        
+        <div class="footer-container-calendar">
+             <label for="month">Jump To: </label>
+             <select id="month" onchange="jump()">
+                 <option value=0>Jan</option>
+                 <option value=1>Feb</option>
+                 <option value=2>Mar</option>
+                 <option value=3>Apr</option>
+                 <option value=4>May</option>
+                 <option value=5>Jun</option>
+                 <option value=6>Jul</option>
+                 <option value=7>Aug</option>
+                 <option value=8>Sep</option>
+                 <option value=9>Oct</option>
+                 <option value=10>Nov</option>
+                 <option value=11>Dec</option>
+             </select>
+             <select id="year" onchange="jump()"></select>       
         </div>
-    </nav>
-    <div class = "routes-dashboard">
-        <input type="radio" name="choice" id ="rb1" checked > <label for="rb1">Habitos</label>
-        <input type="radio" name="choice" id ="rb2"> <label for="rb2">Horario</label>
-        <input type="radio" name="choice" id ="rb3"> <label for="rb3">Archivados</label>
-        <input type="radio" name="choice" id ="rb4"> <label for="rb4">preferencias</label>
+
     </div>
-    <div class = "dashboard-list-habito">
+    
+</div>
+`
+let archivadosTemplate =
+`
+    <div class ="archivados">
+        <h2>Aca irian todos los habitos pasados</h2>
+    </div>
+`
+let preferenciasTemplate = 
+`
+    <div class = "preferences">
+        <ul class ="nav-preferences">
+            <li><input type="radio" name="opt-chk-preferences" id="chk-preferences1"><label for="chk-preferences1">Tags</label></li>
+            <li><input type="radio" name="opt-chk-preferences" id="chk-preferences2"><label for="chk-preferences2">type of something</label></li>
+        </ul>
+    </div>
+`
+
+let mainHabits = 
+`
         <div class = "dlh1">
             <nav class="mav-main-dashboard">
                 <form action="">
@@ -462,28 +707,66 @@ const dashboard =
                     <button type="submit" id="btn-create-habito"> <img src='./resources/vectors/plus-circle.svg' alt="o" type="image/svg"> Create Habito</button>
                 </form>
             </nav>
-            <table class = "table-habito">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="dashboard-all-habito">
-
-                </tbody>
-            </table>
+            <div class="container-table">
+                <table class="table-habito">
+                    <thead>
+                        <tr>
+                            <th class ="th1">Name</th>
+                            <th class ="th2">Type</th>
+                            <th class ="th3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="dashboard-all-habito">
+                
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class = "selected-habito">
             
         </div>
-    </div>
-    <footer>
-        this is our footer
-    </footer>
 `
-// ${completeInfoHabito} -> esto va  en selected-habito
+
+const renderDashboard = async (currentFunctionTemplate) => {
+    let dashboard = 
+    `
+     <nav class = "dashboard-nav-main">
+        <div class="logo">
+            logo
+        </div>
+        <div class="wraper-profile">
+            <div class ="profile">
+                <div class ="avatar">
+
+                </div>
+                <p>hello <span>name</span></p>
+                <div class ="actions-profile">
+                    <input type="checkbox" name="chk-action-profile" id="chk-ap"> <label for="chk-ap">v</label>
+                    <ul class ="slider-mav-profile">
+                        <li><button>an action</button></li>
+                        <li><button id="btn-log-out-dashboard">log out</button></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+    <div class = "routes-dashboard">
+        <input type="radio" name="choice" id ="rb1" checked > <label for="rb1">Habitos</label>
+        <input type="radio" name="choice" id ="rb2"> <label for="rb2">Horario</label>
+        <input type="radio" name="choice" id ="rb3"> <label for="rb3">Archivados</label>
+        <input type="radio" name="choice" id ="rb4"> <label for="rb4">preferencias</label>
+    </div>
+    <div class = "dashboard-list-habito">
+        ${await currentFunctionTemplate}
+    </div>
+    <footer class ="footer-dashboard">
+        <p>@All right reserve by CydonianLlama</p>
+        <a href="https://storyset.com/web">Illustration by Freepik Storyset</a>
+    </footer>
+    `
+    return dashboard
+}
 
 const page404 = 
 `
@@ -500,11 +783,29 @@ const page404 =
 //la aplicacion verifica si el usuario puede ingresar a la ruta especificada 
 //la aplicacion redirecciona a la ruta especificada
 
+const ignoreAnclas = (hashCode) =>{
+    switch(hashCode){
+        case '#Home':
+            return true
+        case '#features':
+            return true
+        case '#fake-pricing':
+            return true
+        case '#git-hub-integration':
+            return true
+        default :
+            return false
+    }
+}
+
 const router = async(hash) => {
 
     console.log('funcion router accionada  : '  +  hash)
     console.log('isLogged log : ' + window.localStorage.getItem('isLogged'))
     let hash_ = await hash;
+    
+    if (ignoreAnclas(hash_)) return
+    
     switch(hash_){
         case '#/Home':
             await renderHome()
@@ -515,7 +816,8 @@ const router = async(hash) => {
             listenersLogin()
             break;
         case '#/Dashboard':
-            container.innerHTML = dashboard
+            //container.innerHTML = dashboard
+            container.innerHTML = await renderDashboard(mainHabits)
             listenersDashboard()
             //renderAllHabitoCard()
             break;

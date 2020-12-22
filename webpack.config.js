@@ -13,11 +13,24 @@ module.exports = {
                 test : /\.js$/,
                 use  : ['babel-loader']
             },
+            {
+                test: /\.(png|jpe?g|svg)$/i,
+                use : {
+                    loader : 'file-loader',
+                    options: {
+                        name: '[name].[ext]'
+                    }
+                }
+            }
         ],
       },
     devServer : {
         contentBase : path.resolve(__dirname,'dist'),
         historyApiFallback : true,
-        port : 5000
+        port: 5000, 
+        historyApiFallback: {
+            index: 'webpack.html'
+        }
+        
     }
 }
