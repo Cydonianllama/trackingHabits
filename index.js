@@ -133,9 +133,15 @@ var renderHome = async () => {
         <div class ="hero-content">
             <h2>This is my <span>APP</span> Tracking</h2>
             <p>my firts app, developed in all aspects by me , im so happy with this project, i hope that you enjoy it like me enjoyed when i was developed this app</p>
-            <button class ="btn-hero-contact">Contact</button>
+            <a class="btn cta" href="https://github.com/Cydonianllama" target="_blank">Contact Me</a>
         </div>
         <img class="programming-amico"src='./resources/vectors/Programming_amico.svg' alt="esta en una imagen">
+        <div style="height: 150px; width : 100%;overflow: hidden; position:absolute; bottom:0;">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C222.63,159.38 349.20,-49.98 605.80,128.78 L538.66,210.69 L0.00,150.00 Z"
+                    style="stroke: none; fill: #d2bdfc;"></path>
+            </svg>
+        </div>
     </div>
     <div class ="features" id ="features">
         <div class ="container-features">
@@ -193,11 +199,21 @@ var renderHome = async () => {
         </div>
     </div>
     <div class = "git-hub-integration" id ="git-hub-integration">
-
+        <div class ="line-app-container">
+            <div class = "la">
+                mi primer deploying de una app
+            </div>
+            <div class ="lal">
+                conociendo algunos de los conceptos que debo aprender
+            </div>
+            <div class="la">
+                pues, creo que no se hacer lineTimes :( , pero es mi primer intento ... lo haré mejor despues :)
+            </div>
+        </div>
     </div>  
     <footer class="footer-main">
-        this is our footer
-        <a href="https://storyset.com/web">Illustration by Freepik Storyset</a>
+        <p>SPA desarrollada por Erick Grandez :)</p>
+        <p>Gracias a:<a href="https://storyset.com/web">Illustration by Freepik Storyset</a></p>
     </footer>
     `
     container.innerHTML = home
@@ -353,7 +369,6 @@ const renderCompleteHabito = () => {
             </form>
         </nav>
         <div class = "anotation-logs">
-
         </div>
     </div>
     `
