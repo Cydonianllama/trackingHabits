@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 app.use('/resources',express.static(path.resolve('dist','resources')))
+app.use('/style', express.static(path.resolve('dist', 'styles')))
 app.use('/dist', express.static(path.resolve('dist')))
 //habito
 

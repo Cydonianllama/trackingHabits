@@ -1,0 +1,234 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+html{
+    scroll-behavior: smooth
+}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+p,span,a,div,main,nav,input{
+    font-family: 'Nunito', sans-serif;
+}
+:root{
+    --m-1:8px;
+    --m-2:12px;
+    --m-3:18px;
+    --m-4:24px;
+    --m-5:32px;
+}
+.logo{
+    font-size: 2.5rem;
+}
+.home-nav-main{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.home-nav-main{
+    height: 10vh;
+}
+.home-hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.ul-nav-main{
+    display: none;
+}
+.hero-content{
+    padding: var(--m-3);
+}
+.hero-content h2{
+    font-size: 2rem;
+}
+.hero-content p{
+    font-size: 1rem;
+}
+.programming-amico{
+    display: none;
+}
+.cta{
+    margin-top: 15px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    background-color: black;
+    width: 130px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+.features{
+    position: relative;
+    
+}
+.container-features {
+    height: 100vh;
+    gap:15px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.container-features > div{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px;
+    width: 75%;
+    height: 18vh;
+    background-color: #3b11f8;
+}
+.container-features > div h2 {
+    font-size: 1.1rem;
+    text-align: center;
+}
+.container-features > div p{
+    display: flex;
+    align-items: center;
+    word-wrap: unset;
+    color: rgb(161, 161, 161);
+    font-weight: 400;
+}
+.container-pricing{
+    height: 300vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.container-pricing > div{
+    height: 80vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.list-features{
+    padding: 5px 0;
+}
+.container-pricing > div button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 40px;
+    background-color: black;
+    color: white;
+}
+.git-hub-integration{
+    height: 100vh;
+}
+.footer-main{
+    height: 60vh;
+    background-color: rgba(0, 0, 0, 0.151);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.footer-main p {
+    font-size: 1rem;
+}
+@media (min-width : 768px){
+    .container-features{
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+    }
+    .container-features > div{
+        width: 250px;
+        height: 30vh;
+    }
+    .programming-amico{
+        width: 50%;
+        display: block;
+    }
+    .ul-nav-main{
+        gap: 15px;
+        display: flex;
+    }
+    .ul-nav-main a{
+        text-decoration: none;
+        padding: 5px 10px;
+        background-color: rgba(8, 8, 8, 0.075);
+        color : rgb(138, 138, 138)
+    }
+    .container-pricing > div{
+        width: 400px;
+    }
+}
+
+
+
+
+
+
+/**   login                                 */
+
+.container-form{
+    width: 100%;
+    height: 100vh;
+}
+.logo-aplication{
+    height: 10vh;
+}
+.switch-options-forms{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80vh;
+}
+.switch-options-forms div{
+    display:flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+
+}
+.switch-options-forms div input{
+    border: 1px solid rgb(155, 155, 155);
+    outline: none;
+    padding: 10px 0;
+    padding-left: 1rem;
+}
+.switch-options-forms div button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 3rem;
+}
+.option-login{
+    width: 100%;
+}
+.option-login > form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.option-register{
+    width: 100%;
+}
+
+
+
+
+/* dashboard ma in*/
+
+.dashboard-nav-main{
+    height: 10vh;
+    background-color: red;
+}
