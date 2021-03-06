@@ -1,45 +1,68 @@
 import {ignoreAnclas} from '../helpers/ignoreAnclas'
-import mainHabits from '../views/viewHabits'
 
-import renderHome from '../pages/Home/Home'
-import {ListenerShowOptionsProfile} from '../pages/Home/utils'
-
-import login from '../components/login/login'
-import listenersLogin from '../components/login/listeners'
-
-import renderDashboard from '../pages/Dashboard/Dashboard'
-import {listenersDashboard} from '../pages/Dashboard/listenersDashboard'
-
+import homePage from '../pages/Home/Home'
+import loginForm from '../components/loginForm/login'
+import dashboardPage from '../pages/Dashboard/Dashboard'
+import pageLogin from '../pages/PageLogin/PageLogin'
 import page404 from '../pages/404Page'
 
-const router = async (hash) => {
+const routes = [
+    {
+        realPath: '#/',
+        path: '/',
+        component: homePage
+    },
+    {
+        realPath: '#/Login',
+        path: '/login',
+        component: pageLogin
+    },
+    {
+        realPath: '#/Dashboard',
+        path: '/dashboard',
+        component: dashboardPage
+    },
+    {
+        realPath : '#/404',
+        path : '/404',
+        component : page404
+    }
+]
+class Router {
 
-    console.log('funcion router accionada  : ' + hash)
-    console.log('isLogged log : ' + window.localStorage.getItem('isLogged'))
+    async routing(hash){
 
-    let hash_ = await hash;
+        let hash_ = hash;
+        let isPageFounded = false
+        let indexNotFoundPage = 0
 
-    if (ignoreAnclas(hash_)) return
+        if (ignoreAnclas(hash_)) return
 
-    switch (hash_) {
-        case '#/Home':
-            await renderHome()
-            if (window.localStorage.getItem('isLogged') === 'true') ListenerShowOptionsProfile()
-            break;
-        case '#/Login':
-            container.innerHTML = login
-            listenersLogin()
-            break;
-        case '#/Dashboard':
-            //container.innerHTML = dashboard
-            container.innerHTML = await renderDashboard(mainHabits)
-            listenersDashboard()
-            //renderAllHabitoCard()
-            break;
-        default:
-            container.innerHTML = page404
-            break;
+        this.routes.forEach((route,index) => {
+            if (route.realPath === hash_){
+                history.replaceState(null, null, route.path);
+                route.component.render()
+                isPageFounded = true
+            }
+            if (route.path === '/404'){
+                indexNotFoundPage = index
+            }
+        })
+
+        if (!isPageFounded) {
+            container.innerHTML = this.routes[indexNotFoundPage].component
+            history.replaceState(null, null, this.routes[indexNotFoundPage].path)
+        }
+    }
+    
+    constructor(routes){
+        // componenst in an array of page components
+        this.routes = routes
     }
 }
+
+
+
+const router = new Router(routes)
 
 export default router;

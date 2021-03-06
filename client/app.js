@@ -1,27 +1,52 @@
 import router from './router/router'
 
-const app = () => {
+class App{
 
-    //localStorage para pruebas 
-    localStorage.setItem('isLogged', 'false')
-    window.location.hash = '/Home'
-    const locationHash = () => {
-        window.location.hash = '/Home'
-        router(window.location.hash)
+    constructor(components,router) {
+        
+        // handle of the change the page when hash change
+        this.router = router
+
+        // array of objects -> component 
+        this.components = components
+
+        // global state of the applicaction
+        this.state = {
+
+        }
+
+        //local variables
+        localStorage.setItem('isLogged', 'false')
+        localStorage.setItem('currentPage', '/')
+
     }
 
-    window.onloadstart = locationHash
+    initConfiguration(){
 
-    window.addEventListener('load', (e) => {
-        console.log(window.location.hash)
-        router(window.location.hash)
-    })
+        window.location.hash = '/'
 
-    window.addEventListener('hashchange', (e) => {
-        console.log(window.location.hash)
-        router(window.location.hash)
-    })
+        const locationHash = () => {
+            window.location.hash = '/'
+            router(window.location.hash)
+        }
+
+        window.onloadstart = locationHash
+
+        window.addEventListener('hashchange', (e) => {
+            localStorage.setItem('currentPage', window.location.hash)
+            this.router.routing(window.location.hash)
+        })
+
+    }
+
+    run(){
+        
+        this.initConfiguration()
+
+    }
 
 }
 
-app()
+const aplication = new App([],router)
+
+aplication.run()

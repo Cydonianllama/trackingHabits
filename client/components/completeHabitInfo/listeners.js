@@ -1,6 +1,7 @@
-import renderAnotationLog from '../anotation/anotation'
+import AnotationLog from '../anotation/anotation'
 
 export const listenersCompleteInfoHabito = () => {
+    
     const buttonAddAnotation = document.getElementById('btn-add-anotation')
     const anotationLogs = document.querySelector('.anotation-logs')
     const textAreaAnotation = document.getElementById('text-area-anotation')
@@ -9,6 +10,7 @@ export const listenersCompleteInfoHabito = () => {
         textAreaAnotation.value = ''
         textAreaAnotation.focus()
     }
+
     let createAnotation = async ({ content }) => {
         return { content: content }
     }
@@ -16,12 +18,17 @@ export const listenersCompleteInfoHabito = () => {
         let anotation = {
             content: textAreaAnotation.value
         }
+
         event.preventDefault()
-        let anotationComponent = await createAnotation(anotation)
-        let templateAnotationLog = await renderAnotationLog(anotationComponent)
+
+        let anotationData = await createAnotation(anotation)
+
+        let templateAnotationLog = new AnotationLog(anotationData).getTemplate()
         anotationLogs.innerHTML += templateAnotationLog
+
         postAddAnotation()
+
     }
+
     buttonAddAnotation.addEventListener('click', addAnotation)
-    //C_addComment()
 }

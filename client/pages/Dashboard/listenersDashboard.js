@@ -1,11 +1,11 @@
-import mainHabits from '../../views/viewHabits'
-import scheduleTemplate from '../../views/listenersSchedule'
-import archivedTemplate from '../../views/archivedTemplate'
-import preferencesTemplate from '../../views/viewPreferences'
+import mainHabits from './components/viewHabits'
+import scheduleTemplate from './components/viewShedules'
+import archivedTemplate from './components/archivedTemplate'
+import preferencesTemplate from './components/viewPreferences'
 
 
 import  {listenerHabitoCard} from '../../components/habitCard/listeners'
-import renderHabitoCard from '../../components/habitCard/habitCard'
+import HabitCard from '../../components/habitCard/habitCard'
 
 const switchDashboardScreens = (id, container) => {
     switch (id) {
@@ -39,7 +39,7 @@ export const listenersDashboard = () => {
 
     const verifyDataHabito = (input_name, tag_habito) => {
         console.log('verifyDataHabito', input_name, tag_habito)
-        if (input_name === null || input_name === undefined) return false
+        if (!input_name) return false
         if (tag_habito === "seleccionar" || tag_habito === "seleccionar") return false
         return true
     }
@@ -48,26 +48,35 @@ export const listenersDashboard = () => {
         selectTagsHabito.value = 'seleccionar';
         inputNameHabito.focus()
     }
+
     const createHabito = ({ name, type }) => {
         return { id: new Date().getTime().toString(), name: name, type: type }
     }
+
     const activateHabitoCardsListener = () => {
         if (dashboardAllHabito.innerHTML === null) return
         else listenerHabitoCard()
     }
+
     const processDataHabito = async (event) => {
-        //data of the form of habit 
+
         event.preventDefault()
+
         if (verifyDataHabito(inputNameHabito.value, selectTagsHabito.value)) {
+
             let indexTagHabito = selectTagsHabito.selectedIndex
             let tagHabitoName = selectTagsHabito.options[indexTagHabito].text
             let nameHabito = inputNameHabito.value
+
             let Habito = createHabito({ name: nameHabito, type: tagHabitoName })
             //C_createHabito(Habito)//fetching information
-            let templateHabitoCard = await renderHabitoCard(Habito)
+            let componentHabitoCard = new HabitCard(Habito)
+            let templateHabitoCard = await componentHabitoCard.getTemplate()
             dashboardAllHabito.innerHTML += templateHabitoCard
+
             postProcesssCreateHabito()
             activateHabitoCardsListener()//if any card there ,this does not activate  
+
         } else {
             return null
         }
