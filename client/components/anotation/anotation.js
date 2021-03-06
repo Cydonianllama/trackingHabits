@@ -1,40 +1,57 @@
-import listenersAnotationLog from './listener'
 class AnotationLog {
 
     constructor(data){
         this.data = data
+        this.currentComponent = null
     }
 
-    render(){
-        let html = this.getTemplate()
+    render(container){
+
+        let div = this.getTemplate()
+        container.prepend(div)
+        this.listener()
 
     }
 
     listener(){
-        listenersAnotationLog()
+
+        let anotationComponent = this.currentComponent
+
+        let btnEdit = this.currentComponent.querySelector('.btn-edit-anotation-log')
+        let btnDelete = this.currentComponent.querySelector('.btn-delete-anotation-log')
+
+        btnDelete.addEventListener('click',(event)=>{
+            anotationComponent.remove()
+            event.preventDefault()
+        })
     }
 
     getTemplate(){
 
-        const {content} = this.data
+        const {text} = this.data
+
+        const div = document.createElement('div')
+        div.classList.add('anotation-log')
 
         const anotationLog =
             `
-            <div class = "anotation-log">
                 <div class = "header-anotation-log">
-                    <span>fehca de anotacion</span>
-                    <span>tag de anotacion</span>
+                    <small>fehca de anotacion</small>
+                    <small>tag de anotacion</small>
                 </div>
                 <div class = "description-anotation-log">
-                    <p>${content}</p>
+                    <p>${text}</p>
                 </div>
                 <div class = "options-anotation-log">
-                    <button id = "btn-edit-anotation-log" >edit</button>
-                    <button id = "btn-delete-anotation-log">delete</button>
+                    <button class = "btn-edit-anotation-log" >edit</button>
+                    <button class = "btn-delete-anotation-log">delete</button>
                 </div>
-            </div>
             `
-        return anotationLog
+        div.innerHTML = anotationLog
+
+        this.currentComponent = div
+
+        return div
 
     }
 }

@@ -1,5 +1,9 @@
-import mainHabits from './components/viewHabits'
-import { listenersDashboard } from '../Dashboard/listenersDashboard'
+import containerHabits from '../../components/containerHabits/containerHabits'
+
+import scheduleTemplate from './components/listenersSchedule'
+import archivedTemplate from './components/archivedTemplate'
+import preferencesTemplate from './components/viewPreferences'
+
 class DashboardPage {
     
     constructor(){
@@ -7,12 +11,56 @@ class DashboardPage {
     }
 
     listeners(){
-        listenersDashboard()
+
+        const switchDashboardScreens = (id, container) => {
+            switch (id) {
+                case 'rb1':
+                    containerHabits.render()
+                    listenersDashboard()
+                    break;
+                case 'rb2':
+                    container.innerHTML = scheduleTemplate
+                    //listenersHorario()
+                    break;
+                case 'rb3':
+                    container.innerHTML = archivedTemplate
+                    break;
+                case 'rb4':
+                    container.innerHTML = preferencesTemplate
+                    break;
+            }
+        }
+
+        const listenersDashboard = () => {
+
+            const routesToGo = document.querySelector('.routes-dashboard');
+
+            const dashboardAllHabito = document.querySelector('.dashboard-all-habito')
+            const btnLogutDashboard = document.getElementById('btn-log-out-dashboard')
+
+            const processSignOut = () => {
+                window.localStorage.setItem('isLogged', false)
+                window.location.hash = '#/Home'
+                C_signout()//fetching information
+            }
+
+            btnLogutDashboard.addEventListener('click', processSignOut)
+
+            routesToGo.childNodes.forEach(item => {
+                item.addEventListener('click', async (e) => {
+                    let container = document.querySelector('.dashboard-list-habito')
+                    if (e.target.checked === true) {
+                        switchDashboardScreens(e.target.id, container)
+                    }
+                })
+            })
+
+        }
     }
 
     async getTemplate(){
 
-        const renderDashboard = async (currentFunctionTemplate) => {
+        const renderDashboard = async () => {
             let dashboard =
                 `
                  <nav class = "dashboard-nav-main">
@@ -42,9 +90,13 @@ class DashboardPage {
                     <input type="radio" name="choice" id ="rb3"> <label for="rb3">Archivados</label>
                     <input type="radio" name="choice" id ="rb4"> <label for="rb4">preferencias</label>
                 </div>
+
+
                 <div class = "dashboard-list-habito">
-                    ${await currentFunctionTemplate}
+                    
                 </div>
+
+
                 <footer class ="footer-dashboard">
                     <p>@All right reserve by CydonianLlama</p>
                     <a href="https://storyset.com/web">Illustration by Freepik Storyset</a>
@@ -52,13 +104,18 @@ class DashboardPage {
             `
             return dashboard
         }
-        return await renderDashboard(mainHabits)
+        // return await renderDashboard(mainHabits)
+        return await renderDashboard()
     }
 
     async render(){
+
         let template = await this.getTemplate()
         container.innerHTML = template
         this.listeners()
+
+        containerHabits.render()
+
     }
 }
 

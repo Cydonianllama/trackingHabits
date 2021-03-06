@@ -1,7 +1,6 @@
-import {ignoreAnclas} from '../helpers/ignoreAnclas'
+import {ignoreAnclas} from './ignoreAnclas'
 
 import homePage from '../pages/Home/Home'
-import loginForm from '../components/loginForm/login'
 import dashboardPage from '../pages/Dashboard/Dashboard'
 import pageLogin from '../pages/PageLogin/PageLogin'
 import page404 from '../pages/404Page'
@@ -36,6 +35,7 @@ class Router {
         let isPageFounded = false
         let indexNotFoundPage = 0
 
+        //for my anchor verify - if exits cause a conflict
         if (ignoreAnclas(hash_)) return
 
         this.routes.forEach((route,index) => {

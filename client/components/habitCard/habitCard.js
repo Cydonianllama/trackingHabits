@@ -1,37 +1,104 @@
+import habitRepo from '../../store/habits'
+import {completeInformation_} from '../../store/completeInformation'
+
 import renderTagHabito from './components/tagHabit'
-import {listenerHabitoCard} from './listeners'
+import completeInfoHabit from '../completeHabitInfo/completeHabitInfo'
 class HabitCard {
 
     constructor(data){
         this.data = data
-        console.log(data)
+        // the component assigned
+        this.currentComponent=null
+        
     }
     
     async getTemplate(){
+
         const {name , type  , id} = this.data
-        const habitoCard =
+
+        const tr = document.createElement('tr')
+
+        tr.dataset.idHabitCard = id ;
+
+        tr.innerHTML  =
             `
-        <tr class ="habitoCard" data-habito-card-id = ${id} >
-            <td>${name}</td>
-            <td> ${await renderTagHabito(type)} </td>
+        
+            <td class = "clickable-habit-card habit-card-name" >${name}</td>
+            <td class = "clickable-habit-card" > ${await renderTagHabito(type)} </td>
             <td>
                 <div class="actions-habito-card">
-                    <button id="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"></button>
+                    <button class="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"></button>
                     <button><img src='./resources/vectors/archive.svg' alt="o"></button>
-                    <button id="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"></button>
+                    <button class="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"></button>
                 </div>
             </td>
-        </tr>	
+        	
 
         `
-        return habitoCard
+
+        this.currentComponent = tr
+        return tr
     }
 
     listener(){
 
-    }
-    render(container){
+        const {id} = this.data
 
+        let clickable = this.currentComponent.querySelectorAll('.clickable-habit-card')
+        const currentComponent = this.currentComponent
+
+        clickable.forEach(item => {
+            item.addEventListener('click',function(event){
+
+                document.querySelector('.selected-habito').firstChild.remove()
+
+                completeInfoHabit.setIDhabit(id)
+                completeInfoHabit.render(document.querySelector('.selected-habito'))
+
+                event.preventDefault()
+            })
+        })
+
+        const actionsHabitCard = document.querySelector('.actions-habito-card')
+
+        let btnDelete = actionsHabitCard.querySelector('.btn-delete-habitocard')
+        let btnEdit = actionsHabitCard.querySelector('.btn-edit-habitocard')
+
+        let nameHabit = actionsHabitCard.querySelector('.habit-card-name')
+
+        btnDelete.addEventListener('click', (event) => {
+
+            let reportDelete = habitRepo.delete(id)
+
+            // some error in the store interrupt the process of delete to the UI
+            if (!reportDelete) return
+
+            currentComponent .remove()
+
+        })
+
+        btnEdit.addEventListener('click', (event) => {
+            nameHabit.contentEditable = "true"
+        })
+
+    }
+
+    createCompleteInfo(){
+        // the creation of complete information
+        var completeInfoInitialData = {
+            id: 'habit-' + completeInformation_.getLengthString(),
+            idHabit: data.id,
+            title: data.name,
+            daysTracking: [],
+            anotations: []
+        }
+        completeInformation_.create(completeInfoInitialData)
+    }
+
+    async render(container){
+        let html = await  this.getTemplate()
+        container.prepend(html)
+        this.listener()
     }
 }
 
@@ -57,5 +124,6 @@ const renderHabitoCard = async ({ name, type }) => {
     `
     return habitoCard
 }
+
 
 export default HabitCard;

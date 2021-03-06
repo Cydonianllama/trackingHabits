@@ -3,12 +3,9 @@ import router from './router/router'
 class App{
 
     constructor(components,router) {
-        
+
         // handle of the change the page when hash change
         this.router = router
-
-        // array of objects -> component 
-        this.components = components
 
         // global state of the applicaction
         this.state = {
