@@ -68,10 +68,7 @@ class CompleteInfoHabit {
                 <div class = "log-habito">
                     <div class="graf1">
                         grafico de dias usando
-                    </div>
-                    <div class="graf2">
-                        grafico de otros elementos
-                    </div>               
+                    </div>            
                 </div>
             </div>
             <nav class ="funcionalidades-anotation">

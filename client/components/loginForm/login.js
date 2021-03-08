@@ -10,38 +10,43 @@ class LoginForm {
     getTemplate(){
         const login =
             `
-                <div class = "container-form">
-                    <div class="logo-aplication">
-                        <h2>aplication logo</h2>
-                        <p>aplication description</p>
-                    </div>
+                <div class="container-form">
+                
                     <div class="switch-options-forms">
+                
+                        <div class="switch-options-form-header">
+                            <h3 class="switch-options-title">Login and Register</h3>
+                            <div class="switch-options">
+                                <button>login</button>
+                                <span>or</span>
+                                <button>register</button>
+                            </div>
+                        </div>
+                
                         <div class="option-login">
                             <form>
                                 <input type="text" placeholder="username" name="usename" />
                                 <input type="password" placeholder="password" name="password" />
                             </form>
-                            <button id = "btn-submit-login" >login</button>
-                            <div class="form-option-register">
-                                <p>no te has registrado ? <button id="btn-register">Registrarse</button> </p>
-                            </div>
+                            <button id="btn-submit-login">login</button>
                         </div>
+                
                         <div class="option-register">
+                
                             <label for="fullaname">Nombres completos</label>
-                            <input type="text" placeholder="fullname" name="fullname" required/>
+                            <input type="text" placeholder="fullname" name="fullname" required />
                             <label for="email">Correo</label>
-                            <input type="email" placeholder="your email" name="email" required/>
+                            <input type="email" placeholder="your email" name="email" required />
                             <label for="username">Username</label>
-                            <input type="text" placeholder="username" name="username" required/>
+                            <input type="text" placeholder="username" name="username" required />
                             <label for="password">Password</label>
-                            <input type="text" placeholder="password" name="password" required/>
+                            <input type="text" placeholder="password" name="password" required />
                             <label for="password2">Confirm password</label>
                             <input type="text" placeholder="confirm password" name="password2" required>
                             <button>Register</button>
-                            <div class = "come-to-login">
-                                <p>tengo una cuenta <button id = "btn-to-login" >Login</button></p>
-                            </div>
+                
                         </div>
+                
                     </div>
                 </div>
         

@@ -16,24 +16,23 @@ class HabitCard {
 
         const {name , type  , id} = this.data
 
-        const tr = document.createElement('tr')
+        const tr = document.createElement('div')
+        tr.classList.add('all-habito-item')
 
         tr.dataset.idHabitCard = id ;
 
         tr.innerHTML  =
             `
         
-            <td class = "clickable-habit-card habit-card-name" >${name}</td>
-            <td class = "clickable-habit-card" > ${await renderTagHabito(type)} </td>
-            <td>
-                <div class="actions-habito-card">
-                    <button class="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"></button>
-                    <button><img src='./resources/vectors/archive.svg' alt="o"></button>
-                    <button class="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"></button>
+                <div class="clickable-habit-card habit-card-name td-name">${name}</div>
+                <div class="clickable-habit-card td-type">${await renderTagHabito(type)}</div>
+                <div>
+                    <div class="actions-habito-card">
+                        <button class="btn-edit-habitocard"> <img src='./resources/vectors/edit-2.svg' alt="o"></button>
+                        <button><img src='./resources/vectors/archive.svg' alt="o"></button>
+                        <button class="btn-delete-habitocard"> <img src='./resources/vectors/trash-2.svg' alt="o"></button>
+                    </div>
                 </div>
-            </td>
-        	
-
         `
 
         this.currentComponent = tr
